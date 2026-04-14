@@ -2,7 +2,7 @@ import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
 
 const initialText = `
-Tiptap Editor demo
+Quill Editor demo
 <p></p>
 <blockquote>
 <p>あのイーハトーヴォのすきとおった風、</p>
