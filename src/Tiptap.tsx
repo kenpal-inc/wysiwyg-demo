@@ -36,7 +36,7 @@ const Tiptap = () => {
 	});
 
 	return (
-		<div className="flex gap-4 w-full items-stretch h-[80vh]">
+		<div className="flex gap-4 w-full items-stretch flex-1 min-h-0">
 			<span className="text-sm font-bold text-left">Tiptap</span>
 			<div className="flex-1 flex flex-col gap-1">
 				<span className="text-sm font-bold text-left">HTML</span>
@@ -57,20 +57,20 @@ const Tiptap = () => {
 						<button
 							type="button"
 							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
-							onClick={() => editor?.commands.setContent(initialContent)}
+							onClick={() => editor.commands.setContent(initialContent)}
 						>
 							Reset
 						</button>
 						<button
 							type="button"
 							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
-							onClick={() => editor?.commands.clearContent()}
+							onClick={() => editor.commands.clearContent()}
 						>
 							Clear
 						</button>
 					</div>
 				</div>
-				<EditorContent className="flex-1" editor={editor} />
+				<EditorContent className="flex-1 min-h-0" editor={editor} />
 			</div>
 		</div>
 	);
