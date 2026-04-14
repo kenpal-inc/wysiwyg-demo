@@ -1,7 +1,18 @@
 import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
 
-const initialText = "Quill Editor demo";
+const initialText = `
+Tiptap Editor demo
+<p></p>
+<blockquote>
+<p>あのイーハトーヴォのすきとおった風、</p>
+<p>夏でも底に冷たさをもつ青いそら、</p>
+<p>うつくしい森で飾られたモリーオ市、</p>
+<p>郊外のぎらぎらひかる草の波。</p>
+</blockquote>
+<p></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a></p>
+`;
 
 export default function QuillEditor() {
 	const editorRef = useRef<HTMLDivElement>(null);
@@ -13,7 +24,7 @@ export default function QuillEditor() {
 		if (editorRef.current && !quillRef.current) {
 			const q = new Quill(editorRef.current);
 			quillRef.current = q;
-			q.setText(initialText);
+			q.clipboard.dangerouslyPasteHTML(initialText);
 			setHtml(q.root.innerHTML);
 			setDelta(JSON.stringify(q.getContents(), null, 2));
 			q.on("text-change", () => {
@@ -50,7 +61,8 @@ export default function QuillEditor() {
 							type="button"
 							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
 							onClick={() => {
-								if (quillRef.current) quillRef.current.setText(initialText);
+								if (quillRef.current)
+									quillRef.current.clipboard.dangerouslyPasteHTML(initialText);
 							}}
 						>
 							Reset

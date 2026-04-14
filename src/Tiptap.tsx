@@ -4,17 +4,15 @@ import { useState } from "react";
 
 const initialContent = `
 Tiptap Editor demo
-<hr>
-<pre><code>console.log("Hello, world!");</code></pre>
-<hr>
+<p></p>
 <blockquote>
 <p>あのイーハトーヴォのすきとおった風、</p>
 <p>夏でも底に冷たさをもつ青いそら、</p>
 <p>うつくしい森で飾られたモリーオ市、</p>
 <p>郊外のぎらぎらひかる草の波。</p>
 </blockquote>
-<hr>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>
+<p></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a></p>
 `;
 
 const Tiptap = () => {
