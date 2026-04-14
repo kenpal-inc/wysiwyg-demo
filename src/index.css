@@ -33,6 +33,14 @@
 		background: rgba(255, 255, 255, 0.5);
 	}
 
+	.ql-container {
+		@apply flex flex-col h-full;
+
+		.ql-editor {
+			@apply flex-1 outline-none text-left p-4 overflow-y-auto;
+		}
+	}
+
 	.tiptap {
 		@apply border border-gray-500 rounded-lg p-4 h-full overflow-y-auto outline-none bg-white/10 text-left;
 

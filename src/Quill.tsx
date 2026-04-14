@@ -1,0 +1,76 @@
+import Quill from "quill";
+import { useEffect, useRef, useState } from "react";
+
+const initialText = "Quill Editor demo";
+
+export default function QuillEditor() {
+	const editorRef = useRef<HTMLDivElement>(null);
+	const quillRef = useRef<Quill>(null);
+	const [html, setHtml] = useState("");
+	const [delta, setDelta] = useState("");
+
+	useEffect(() => {
+		if (editorRef.current && !quillRef.current) {
+			const q = new Quill(editorRef.current);
+			quillRef.current = q;
+			q.setText(initialText);
+			setHtml(q.root.innerHTML);
+			setDelta(JSON.stringify(q.getContents(), null, 2));
+			q.on("text-change", () => {
+				setHtml(q.root.innerHTML);
+				setDelta(JSON.stringify(q.getContents(), null, 2));
+			});
+		}
+	}, []);
+
+	return (
+		<div className="flex gap-4 w-full items-stretch flex-1 min-h-0">
+			<span className="text-sm font-bold text-left w-12 shrink-0">Quill</span>
+			<div className="flex-1 min-w-0 flex flex-col gap-1">
+				<div className="flex items-center h-6">
+					<span className="text-sm font-bold text-left">HTML</span>
+				</div>
+				<pre className="flex-1 border border-gray-500 rounded-lg p-4 overflow-auto bg-white/10 text-left text-sm whitespace-pre-wrap break-all">
+					<code>{html}</code>
+				</pre>
+			</div>
+			<div className="flex-1 min-w-0 flex flex-col gap-1">
+				<div className="flex items-center h-6">
+					<span className="text-sm font-bold text-left">Delta</span>
+				</div>
+				<pre className="flex-1 border border-gray-500 rounded-lg p-4 overflow-auto bg-white/10 text-left text-sm whitespace-pre-wrap break-all">
+					<code>{delta}</code>
+				</pre>
+			</div>
+			<div className="flex-1 min-w-0 flex flex-col gap-1">
+				<div className="flex items-center justify-between gap-2 h-6">
+					<span className="text-sm font-bold text-left">Editor</span>
+					<div>
+						<button
+							type="button"
+							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
+							onClick={() => {
+								if (quillRef.current) quillRef.current.setText(initialText);
+							}}
+						>
+							Reset
+						</button>
+						<button
+							type="button"
+							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
+							onClick={() => {
+								if (quillRef.current) quillRef.current.setText("");
+							}}
+						>
+							Clear
+						</button>
+					</div>
+				</div>
+				<div
+					ref={editorRef}
+					className="flex-1 min-h-0 rounded-lg border border-gray-500 bg-white/10"
+				/>
+			</div>
+		</div>
+	);
+}
