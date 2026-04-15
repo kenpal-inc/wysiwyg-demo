@@ -1,3 +1,5 @@
+import { FileHandler } from "@tiptap/extension-file-handler";
+import { Image } from "@tiptap/extension-image";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
@@ -19,7 +21,39 @@ export default function Tiptap() {
 
 	const editor = useEditor({
 		// https://tiptap.dev/docs/editor/extensions
-		extensions: [StarterKit],
+		extensions: [
+			StarterKit,
+			Image.configure({ inline: true }),
+			FileHandler.configure({
+				onPaste: (editor, files, htmlContent) => {
+					if (htmlContent) {
+						// allow default handling of pasting HTML content
+						return false;
+					}
+					files.forEach((file) => {
+						const url = URL.createObjectURL(file);
+						editor
+							.chain()
+							.insertContentAt(editor.state.selection.anchor, {
+								type: "image",
+								attrs: { src: url },
+							})
+							.focus()
+							.run();
+					});
+				},
+				onDrop: (editor, files, pos) => {
+					files.forEach((file) => {
+						const url = URL.createObjectURL(file);
+						editor
+							.chain()
+							.insertContentAt(pos, { type: "image", attrs: { src: url } })
+							.focus()
+							.run();
+					});
+				},
+			}),
+		],
 		content: initialContent,
 		onCreate: ({ editor }) => {
 			setHtml(editor.getHTML());

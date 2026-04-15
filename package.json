@@ -11,6 +11,8 @@
 	},
 	"dependencies": {
 		"@tinymce/tinymce-react": "^6.3.0",
+		"@tiptap/extension-file-handler": "^3.22.3",
+		"@tiptap/extension-image": "^3.22.3",
 		"@tiptap/pm": "^3.22.3",
 		"@tiptap/react": "^3.22.3",
 		"@tiptap/starter-kit": "^3.22.3",
