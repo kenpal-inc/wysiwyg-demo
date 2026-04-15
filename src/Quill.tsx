@@ -9,7 +9,7 @@ Quill Editor demo
 うつくしい森で飾られたモリーオ市、<br>
 郊外のぎらぎらひかる草の波。
 </blockquote>
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>
+<a href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>
 `;
 
 export default function QuillEditor() {
