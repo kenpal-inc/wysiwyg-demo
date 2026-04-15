@@ -10,6 +10,7 @@
 		"format": "bunx biome check --write"
 	},
 	"dependencies": {
+		"@tinymce/tinymce-react": "^6.3.0",
 		"@tiptap/pm": "^3.22.3",
 		"@tiptap/react": "^3.22.3",
 		"@tiptap/starter-kit": "^3.22.3",
@@ -17,7 +18,8 @@
 		"quill": "^2.0.3",
 		"react": "^19",
 		"react-dom": "^19",
-		"tailwindcss": "^4.1.11"
+		"tailwindcss": "^4.1.11",
+		"tinymce": "^8.4.0"
 	},
 	"devDependencies": {
 		"@types/react": "^19",
