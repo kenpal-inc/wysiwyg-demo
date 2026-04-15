@@ -1,4 +1,4 @@
-# bun-react-tailwind-template
+# wysiwyg-demo
 
 To install dependencies:
 
