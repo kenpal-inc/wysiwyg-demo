@@ -3,16 +3,15 @@ import { useEffect, useRef, useState } from "react";
 
 import "quill/dist/quill.snow.css";
 
-const initialText = `
-Quill Editor demo
-<blockquote>
-あのイーハトーヴォのすきとおった風、<br>
-夏でも底に冷たさをもつ青いそら、<br>
-うつくしい森で飾られたモリーオ市、<br>
-郊外のぎらぎらひかる草の波。
-</blockquote>
-<a href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>
-`;
+const initialText =
+	`Quill Editor demo` +
+	`<blockquote>` +
+	`あのイーハトーヴォのすきとおった風、<br>` +
+	`夏でも底に冷たさをもつ青いそら、<br>` +
+	`うつくしい森で飾られたモリーオ市、<br>` +
+	`郊外のぎらぎらひかる草の波。` +
+	`</blockquote>` +
+	`<a href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>`;
 
 export default function QuillEditor() {
 	const quillRef = useRef<Quill>(null);
@@ -22,7 +21,18 @@ export default function QuillEditor() {
 
 	useEffect(() => {
 		if (editorRef.current && !quillRef.current) {
-			const q = new Quill(editorRef.current, { theme: "snow" });
+			const q = new Quill(editorRef.current, {
+				theme: "snow",
+				modules: {
+					toolbar: [
+						[{ header: [1, 2, 3, false] }],
+						["bold", "italic", "underline", "link"],
+						["blockquote", "code-block"],
+						[{ list: "ordered" }, { list: "bullet" }],
+						["clean"],
+					],
+				},
+			});
 			quillRef.current = q;
 			q.clipboard.dangerouslyPasteHTML(initialText);
 			setHtml(q.root.innerHTML);
