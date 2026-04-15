@@ -37,7 +37,6 @@
 		@apply border border-gray-500 rounded-lg px-4 h-full overflow-y-auto outline-none bg-white/10 text-left;
 	}
 
-	.ql-editor,
 	.tiptap {
 		p {
 			@apply my-4;
@@ -92,11 +91,28 @@
 		}
 	}
 
+	.ql-toolbar {
+		@apply shrink-0;
+
+		button svg,
+		.ql-picker svg {
+			filter: invert(1);
+		}
+
+		.ql-picker-label {
+			color: rgba(255, 255, 255, 0.87);
+		}
+
+		.ql-picker-options {
+			@apply bg-[#242424];
+		}
+	}
+
 	.ql-container {
-		@apply flex flex-col h-full;
+		@apply flex-1 min-h-0 overflow-auto;
 
 		.ql-editor {
-			@apply flex-1 outline-none text-left px-4 overflow-y-auto;
+			@apply outline-none text-left px-4;
 		}
 	}
 }

@@ -1,6 +1,8 @@
 import Quill from "quill";
 import { useEffect, useRef, useState } from "react";
 
+import "quill/dist/quill.snow.css";
+
 const initialText = `
 Quill Editor demo
 <blockquote>
@@ -13,14 +15,14 @@ Quill Editor demo
 `;
 
 export default function QuillEditor() {
-	const editorRef = useRef<HTMLDivElement>(null);
 	const quillRef = useRef<Quill>(null);
+	const editorRef = useRef<HTMLDivElement>(null);
 	const [html, setHtml] = useState("");
 	const [delta, setDelta] = useState("");
 
 	useEffect(() => {
 		if (editorRef.current && !quillRef.current) {
-			const q = new Quill(editorRef.current);
+			const q = new Quill(editorRef.current, { theme: "snow" });
 			quillRef.current = q;
 			q.clipboard.dangerouslyPasteHTML(initialText);
 			setHtml(q.root.innerHTML);
@@ -76,10 +78,9 @@ export default function QuillEditor() {
 						</button>
 					</div>
 				</div>
-				<div
-					ref={editorRef}
-					className="flex-1 min-h-0 rounded-lg border border-gray-500 bg-white/10"
-				/>
+				<div className="flex-1 min-h-0 flex flex-col bg-white/10">
+					<div ref={editorRef} />
+				</div>
 			</div>
 		</div>
 	);
