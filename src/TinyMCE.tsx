@@ -1,5 +1,6 @@
 import { Editor } from "@tinymce/tinymce-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { Editor as TinyMCEEditor } from "tinymce";
 
 import "tinymce/tinymce";
 import "tinymce/models/dom/model";
@@ -20,6 +21,7 @@ TinyMCE Editor demo
 `;
 
 export default function TinyMCE() {
+	const editorRef = useRef<TinyMCEEditor>(null);
 	const [html, setHtml] = useState("");
 
 	return (
@@ -36,12 +38,41 @@ export default function TinyMCE() {
 			<div className="flex-1 flex flex-col gap-1">
 				<div className="flex items-center justify-between gap-2 h-6">
 					<span className="text-sm font-bold text-left">Editor</span>
+					<div>
+						<button
+							type="button"
+							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
+							onClick={() => {
+								if (editorRef.current) {
+									editorRef.current.setContent(initialValue);
+									setHtml(editorRef.current.getBody().innerHTML);
+								}
+							}}
+						>
+							Reset
+						</button>
+						<button
+							type="button"
+							className="text-xs px-2 py-0.5 rounded hover:bg-white/20 active:scale-90 active:bg-white/30 transition-transform cursor-pointer"
+							onClick={() => {
+								if (editorRef.current) {
+									editorRef.current.setContent("");
+									setHtml(editorRef.current.getBody().innerHTML);
+								}
+							}}
+						>
+							Clear
+						</button>
+					</div>
 				</div>
 				<Editor
 					licenseKey="gpl"
 					initialValue={initialValue}
 					init={{ menubar: false, resize: false }}
-					onInit={(_evt, editor) => setHtml(editor.getBody().innerHTML)}
+					onInit={(_evt, editor) => {
+						editorRef.current = editor;
+						setHtml(editor.getBody().innerHTML);
+					}}
 					onEditorChange={(_cnt, editor) => setHtml(editor.getBody().innerHTML)}
 				/>
 			</div>
