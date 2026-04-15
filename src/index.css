@@ -34,11 +34,15 @@
 	}
 
 	.tiptap {
-		@apply border border-gray-500 rounded-lg p-4 h-full overflow-y-auto outline-none bg-white/10 text-left;
+		@apply border border-gray-500 rounded-lg px-4 h-full overflow-y-auto outline-none bg-white/10 text-left;
 	}
 
 	.ql-editor,
 	.tiptap {
+		p {
+			@apply my-4;
+		}
+
 		ul {
 			@apply list-disc pl-6;
 		}
@@ -92,7 +96,7 @@
 		@apply flex flex-col h-full;
 
 		.ql-editor {
-			@apply flex-1 outline-none text-left p-4 overflow-y-auto;
+			@apply flex-1 outline-none text-left px-4 overflow-y-auto;
 		}
 	}
 }

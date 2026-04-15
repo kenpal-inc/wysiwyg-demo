@@ -3,15 +3,13 @@ import { useEffect, useRef, useState } from "react";
 
 const initialText = `
 Quill Editor demo
-<p></p>
 <blockquote>
-<p>あのイーハトーヴォのすきとおった風、</p>
-<p>夏でも底に冷たさをもつ青いそら、</p>
-<p>うつくしい森で飾られたモリーオ市、</p>
-<p>郊外のぎらぎらひかる草の波。</p>
+あのイーハトーヴォのすきとおった風、<br>
+夏でも底に冷たさをもつ青いそら、<br>
+うつくしい森で飾られたモリーオ市、<br>
+郊外のぎらぎらひかる草の波。
 </blockquote>
-<p></p>
-<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a></p>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://www.aozora.gr.jp/cards/000081/files/1935_19925.html">ポラーノの広場 - 宮沢賢治</a>
 `;
 
 export default function QuillEditor() {
@@ -36,7 +34,7 @@ export default function QuillEditor() {
 
 	return (
 		<div className="flex gap-4 w-full items-stretch flex-1 min-h-0">
-			<span className="text-sm font-bold text-left w-12 shrink-0">Quill</span>
+			<span className="text-sm font-bold text-left w-14 shrink-0">Quill</span>
 			<div className="flex-1 min-w-0 flex flex-col gap-1">
 				<div className="flex items-center h-6">
 					<span className="text-sm font-bold text-left">HTML</span>
