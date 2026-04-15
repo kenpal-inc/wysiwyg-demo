@@ -109,10 +109,10 @@
 	}
 
 	.ql-container {
-		@apply flex-1 min-h-0 overflow-auto;
+		@apply flex-1 min-h-0 overflow-visible;
 
 		.ql-editor {
-			@apply outline-none text-left px-4;
+			@apply outline-none text-left px-4 h-full overflow-y-auto;
 		}
 	}
 }
